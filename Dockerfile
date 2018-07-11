@@ -21,11 +21,6 @@ RUN apt update && \
        git \
        python \
        parallel \
-       default-jre \
-       unzip \
-       build-essential \
-       libz-dev \
-       ncbi-blast+ \
        bzip2 && \
     apt --yes autoremove \
     && apt autoclean \
@@ -39,6 +34,21 @@ RUN wget -O - https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/current/sratoolkit.curr
 ENV PATH "/opt/sratoolkit/bin/:${PATH}"
 
 ### Setup fast-plast
+### Install required software
+RUN apt update && \
+    apt --yes install \
+       wget \
+       git \
+       python \
+       default-jre \
+       unzip \
+       build-essential \
+       libz-dev \
+       ncbi-blast+ && \
+    apt --yes autoremove \
+    && apt autoclean \
+    && rm -rf /var/lib/apt/lists/* /var/log/dpkg.log
+
 WORKDIR /opt/
 RUN git clone https://github.com/mrmckain/fast-plast.git && \
     cd fast-plast && \
