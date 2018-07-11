@@ -14,6 +14,13 @@ LABEL maintainer="frank.foerster@ime.fraunhofer.de" \
       org.label-schema.build-date=${BUILD_DATE} \
       org.label-schema.vcs-url="https://github.com/chloroExtractorTeam/screening_container.git"
 
+### Setup of sratools to retrieve SRA datasets
+WORKDIR /opt/
+RUN wget -O - https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/current/sratoolkit.current-ubuntu64.tar.gz | \
+    tar xzf - && \
+    ln -s sratoolkit* sratoolkit
+ENV PATH "/opt/sratoolkit/bin/:${PATH}"
+
 RUN apt update && \
     apt --yes install \
        wget \
