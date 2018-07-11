@@ -58,6 +58,13 @@ RUN git clone https://github.com/mrmckain/fast-plast.git && \
     chmod +x fast-plast.pl
 ENV PATH="/opt/fast-plast/:${PATH}"
 
+### Installation of fastq-shuffle
+WORKDIR /opt/
+RUN wget -O - https://github.com/chloroExtractorTeam/fastq-shuffle/archive/v0.9.1.tar.gz && \
+    tar xzf - && \
+    ln -s fastq-shuffle-0.9.1 fastq-shuffle
+ENV PATH="/opt/fastq-shuffle/:${PATH}"
+
 # Setup of /data volume and set it as working directory
 VOLUME /data
 WORKDIR /data
