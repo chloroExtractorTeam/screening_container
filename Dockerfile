@@ -74,6 +74,12 @@ RUN git clone --recursive \
     rm -rf /opt/chloroExtractor/.git
 ENV PATH "/opt/chloroExtractor/bin/:$PATH"
 
+### Add runner script
+ADD run.sh /usr/local/bin/run.sh
+
 # Setup of /data volume and set it as working directory
 VOLUME /data
 WORKDIR /data
+
+### Set entrypoint
+ENTRYPOINT ["/usr/local/bin/run.sh"]
