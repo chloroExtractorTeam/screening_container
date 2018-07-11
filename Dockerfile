@@ -21,6 +21,11 @@ RUN apt update && \
        git \
        python \
        parallel \
+       default-jre \
+       unzip \
+       build-essential \
+       libz-dev \
+       ncbi-blast+ \
        bzip2 && \
     apt --yes autoremove \
     && apt autoclean \
