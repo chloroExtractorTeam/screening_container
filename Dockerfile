@@ -4,8 +4,9 @@ FROM chloroextractorteam/chloroextractor-dockerbase:${osversion}
 ARG VERSION=master
 ARG VCS_REF
 ARG BUILD_DATE
+ARG CHLOROEXTRACTORVERSION=v1.0.5
 
-RUN echo "VCS_REF: "${VCS_REF}", BUILD_DATE: "${BUILD_DATE}", VERSION: "${VERSION}
+RUN echo "VCS_REF: "${VCS_REF}", BUILD_DATE: "${BUILD_DATE}", VERSION: "${VERSION}", chloroExtractor version:"${CHLOROEXTRACTORVERSION}
 
 LABEL maintainer="frank.foerster@ime.fraunhofer.de" \
       description="Dockerfile providing our screening tools for new chloroplasts" \
@@ -64,6 +65,14 @@ RUN wget -O - https://github.com/chloroExtractorTeam/fastq-shuffle/archive/v0.9.
     tar xzf - && \
     ln -s fastq-shuffle-0.9.1 fastq-shuffle
 ENV PATH="/opt/fastq-shuffle/:${PATH}"
+
+### Installation of chloroExtractor
+RUN git clone --recursive \
+              --branch ${CHLOROEXTRACTORVERSION} \
+        https://github.com/chloroExtractorTeam/chloroExtractor.git \
+        /opt/chloroExtractor/ && \
+    rm -rf /opt/chloroExtractor/.git
+ENV PATH "/opt/chloroExtractor/bin/:$PATH"
 
 # Setup of /data volume and set it as working directory
 VOLUME /data
