@@ -60,7 +60,7 @@ ENV PATH="/opt/fast-plast/:${PATH}"
 
 ### Installation of fastq-shuffle
 WORKDIR /opt/
-RUN wget -O - https://github.com/chloroExtractorTeam/fastq-shuffle/archive/v0.9.1.tar.gz && \
+RUN wget -O - https://github.com/chloroExtractorTeam/fastq-shuffle/archive/v0.9.1.tar.gz | \
     tar xzf - && \
     ln -s fastq-shuffle-0.9.1 fastq-shuffle
 ENV PATH="/opt/fastq-shuffle/:${PATH}"
