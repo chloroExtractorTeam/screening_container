@@ -54,7 +54,9 @@ RUN git clone https://github.com/mrmckain/fast-plast.git && \
     cd fast-plast && \
     git checkout fefdf462cab66d9de39023ee7d04ca13ed637950 && \
     echo -e "n\nall" | \
-    perl INSTALL.pl
+    perl INSTALL.pl && \
+    chmod +x fast-plast.pl
+ENV PATH="/opt/fast-plast/:${PATH}"
 
 # Setup of /data volume and set it as working directory
 VOLUME /data
