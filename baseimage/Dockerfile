@@ -14,6 +14,17 @@ LABEL maintainer="frank.foerster@ime.fraunhofer.de" \
       org.label-schema.build-date=${BUILD_DATE} \
       org.label-schema.vcs-url="https://github.com/chloroExtractorTeam/screening_container.git"
 
+RUN apt update && \
+    apt --yes install \
+       wget \
+       git \
+       python \
+       parallel \
+       bzip2 && \
+    apt --yes autoremove \
+    && apt autoclean \
+    && rm -rf /var/lib/apt/lists/* /var/log/dpkg.log
+
 # Setup of /data volume and set it as working directory
 VOLUME /data
 WORKDIR /data
