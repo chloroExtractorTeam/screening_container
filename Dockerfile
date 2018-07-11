@@ -38,6 +38,14 @@ RUN wget -O - https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/current/sratoolkit.curr
     ln -s sratoolkit* sratoolkit
 ENV PATH "/opt/sratoolkit/bin/:${PATH}"
 
+### Setup fast-plast
+WORKDIR /opt/
+RUN git clone https://github.com/mrmckain/fast-plast.git && \
+    cd fast-plast && \
+    git checkout fefdf462cab66d9de39023ee7d04ca13ed637950 && \
+    echo -e "n\nall" | \
+    perl INSTALL.pl
+
 # Setup of /data volume and set it as working directory
 VOLUME /data
 WORKDIR /data
