@@ -8,6 +8,9 @@ echo "ACCESSION: ${ACCESSION}, RANDOMSEED: ${RANDOMSEED}, CPUCORES: ${CPUCORES}"
 
 export LC_ALL="C.UTF-8"
 
+### Downloading
+time prefetch --progress --verbose ${ACCESSION}
+### Converting
 time fastq-dump --outdir ${ACCESSION} --split-files -v ${ACCESSION}
 
 cd ${ACCESSION}
