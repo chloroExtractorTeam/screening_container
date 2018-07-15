@@ -10,6 +10,13 @@ export LC_ALL="C.UTF-8"
 
 ### Downloading
 time prefetch --progress --max-size 100G --verbose ${ACCESSION}
+
+if [ ! -e $(srapath ${ACCESSION}) ]
+then
+    echo "ERROR DOWNLOADING ${ACCESSION}">&2
+    exit 1;
+fi
+
 ### Converting
 time fastq-dump --outdir ${ACCESSION} --split-files -v ${ACCESSION}
 
