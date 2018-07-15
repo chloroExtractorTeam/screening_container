@@ -20,6 +20,18 @@ fi
 ### Converting
 time fastq-dump --outdir ${ACCESSION} --split-files -v ${ACCESSION}
 
+if [ ! -e ${ACCESSION}/${ACCESSION}_1.fastq ]
+then
+    echo "ERROR CONVERTING ${ACCESSION}">&2
+    exit 2;
+fi
+
+if [ ! -e ${ACCESSION}/${ACCESSION}_2.fastq ]
+then
+    echo "ERROR CONVERTING ${ACCESSION}">&2
+    exit 2;
+fi
+
 cd ${ACCESSION}
 time fastq-shuffle.pl --randomseed ${RANDOMSEED} -1 ${ACCESSION}_1.fastq -2 ${ACCESSION}_2.fastq
 
