@@ -9,7 +9,7 @@ echo "ACCESSION: ${ACCESSION}, RANDOMSEED: ${RANDOMSEED}, CPUCORES: ${CPUCORES}"
 export LC_ALL="C.UTF-8"
 
 ### Downloading
-time prefetch --progress --max-size 100G --verbose ${ACCESSION}
+time prefetch --progress --max-size=100G --verbose ${ACCESSION}
 
 if [ ! -e $(srapath ${ACCESSION}) ]
 then
