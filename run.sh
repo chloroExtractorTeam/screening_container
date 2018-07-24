@@ -43,3 +43,4 @@ time ptx --threads ${CPUCORES} -1 ${ACCESSION}_1.fastq.shuffled -2 ${ACCESSION}_
 
 time fast-plast.pl -1 ${ACCESSION}_1.fastq.shuffled -2 ${ACCESSION}_2.fastq.shuffled --name FP_${ACCESSION}_out --coverage_analysis --threads ${CPUCORES}
 
+rm ${ACCESSION}_1.fastq.shuffled ${ACCESSION}_2.fastq.shuffled
