@@ -37,6 +37,8 @@ time fastq-shuffle.pl --randomseed ${RANDOMSEED} -1 ${ACCESSION}_1.fastq -2 ${AC
 
 md5sum *.fastq *.shuffled
 
+rm ${ACCESSION}_1.fastq ${ACCESSION}_2.fastq
+
 time ptx --threads ${CPUCORES} -1 ${ACCESSION}_1.fastq.shuffled -2 ${ACCESSION}_2.fastq.shuffled -d CE_${ACCESSION}_out
 
 time fast-plast.pl -1 ${ACCESSION}_1.fastq.shuffled -2 ${ACCESSION}_2.fastq.shuffled --name FP_${ACCESSION}_out --coverage_analysis --threads ${CPUCORES}
